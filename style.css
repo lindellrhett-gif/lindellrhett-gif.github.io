@@ -54,7 +54,8 @@ a:hover { text-decoration-thickness: 2px; }
 .nav { display: flex; gap: 4px 18px; flex-wrap: wrap; justify-content: flex-end; font-size: 15px; }
 .nav a { color: var(--muted); text-decoration: none; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--text); }
-@media (max-width: 420px) { .nav { gap: 4px 12px; font-size: 14px; } .nav a:last-child { display: none; } }
+@media (max-width: 420px) { .nav { gap: 4px 12px; font-size: 14px; } .nav a:last-child { display: none; }
+  .site-header .wrap { min-height: 52px; } }
 
 /* Hero */
 .hero { padding: 64px 0 40px; }

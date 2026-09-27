@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Résumé · Rhett Lindell</title>
+<meta name="description" content="Résumé of Rhett Lindell, Computer Science student at the University of North Dakota." />
+<link rel="icon" href="images/rust-strength/icon.png" />
+<style>
+  @page { size: letter; margin: 0.5in; }
+  :root { --ink: #000; --paper: #fff; --rule: #000; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #e9e7e3; color: var(--ink);
+    font: 10.5pt/1.2 Calibri, Carlito, "Segoe UI", Arial, sans-serif; }
+  .page { background: var(--paper); width: 8.5in; min-height: 11in; margin: 24px auto; padding: 0.5in;
+    box-shadow: 0 2px 16px rgba(0,0,0,.15); }
+  h1 { font-size: 20pt; text-align: center; margin: 0 0 1pt; letter-spacing: 0.02em; }
+  .contact { text-align: center; margin: 0; }
+  .contact a { color: inherit; text-decoration: none; }
+  h2 { font-size: 11.5pt; text-transform: uppercase; margin: 7pt 0 3pt; padding-bottom: 1pt;
+    border-bottom: 0.75pt solid var(--rule); }
+  p { margin: 0; }
+  .row { display: flex; justify-content: space-between; gap: 12pt; }
+  .row > span:last-child { white-space: nowrap; }
+  .item + .item { margin-top: 3pt; }
+  ul { margin: 0; padding-left: 0.25in; }
+  li { margin: 0; }
+  .toolbar { width: 8.5in; max-width: calc(100% - 32px); margin: 20px auto 0; display: flex; gap: 12px;
+    justify-content: space-between; font: 15px/1.4 -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  .toolbar a { color: #9a3b18; }
+  @media (max-width: 860px) {
+    .page { width: auto; min-height: 0; margin: 16px; padding: 20px 16px; }
+    .row { flex-wrap: wrap; gap: 0 12pt; }
+  }
+  @media print {
+    body { background: #fff; }
+    .toolbar { display: none; }
+    .page { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<nav class="toolbar"><a href="./">← Rhett Lindell</a><a href="Rhett-Lindell-Resume.pdf" download>Download PDF</a></nav>
+<main class="page">
+<h1>RHETT LINDELL</h1>
+<p class="contact">Grand Forks, ND | <a href="mailto:rhett.lindell@und.edu">rhett.lindell@und.edu</a> | U.S. Citizen</p>
+<p class="contact"><a href="https://www.linkedin.com/in/rhett-lindell">linkedin.com/in/rhett-lindell</a> | <a href="https://github.com/lindellrhett-gif">github.com/lindellrhett-gif</a></p>
+<h2>Education</h2>
+<div class="item"><p class="row"><b>University of North Dakota</b><span>Grand Forks, ND</span></p><p class="row"><i>B.S. Computer Science, Minor in Cybersecurity</i><span>Expected May 2029</span></p><ul><li><b>GPA: </b>3.9/4.0 | <b>Honors: </b>President’s List, Dean’s List</li><li><b>Relevant Coursework: </b>Algorithms &amp; Data Structures, Discrete Mathematics, Programming Languages, Statistics</li></ul></div>
+<h2>Technical Skills</h2>
+<p class="line"><b>Languages: </b>TypeScript, JavaScript, Python, Java, C, C++, SQL</p>
+<p class="line"><b>Frameworks &amp; Libraries: </b>React Native, Expo, TanStack Query</p>
+<p class="line"><b>Backend &amp; Cloud: </b>Supabase (PostgreSQL, Auth, Row Level Security, Edge Functions), REST APIs, Claude API</p>
+<p class="line"><b>Tools: </b>Git, GitHub, Claude Code, EAS Build, TestFlight, App Store Connect</p>
+<h2>Projects</h2>
+<div class="item"><p class="row"><span><b>Rust Strength – AI-Powered Strength Training App</b><i>  |  TypeScript, React Native, Expo, Supabase, Claude API</i></span><span>2026</span></p><ul><li>Built and submitted to the iOS App Store a workout tracker with an AI coach, workout generator, and social feed; beta-tested by 10 TestFlight users who logged 100+ workouts</li><li>Engineered a custom progressive-overload algorithm that recommends weights from each user’s training history</li><li>Designed the PostgreSQL data model and an offline-first sync strategy with TanStack Query so workouts can be logged without a connection</li><li>Built a friends feed on Supabase Auth with privacy enforced in the database via Row Level Security policies, including a user opt-out for sharing sessions</li><li>Secured AI features by routing Claude API calls through Supabase Edge Functions, keeping API keys off the client</li><li>Directed AI-assisted development with Claude Code: owned architecture and data design, reviewed generated code, and led debugging and testing</li></ul></div>
+<div class="item"><p class="row"><span><b>ShelfSmith – AI Pantry &amp; Grocery App</b><i>  |  TypeScript, React Native, Expo, Supabase, Claude API</i></span><span>2026</span></p><ul><li>Developing an iOS app that tracks pantry inventory and grocery lists, currently in TestFlight beta with 5 testers</li><li>Integrated an AI receipt scanner using the Claude API that converts receipt photos into pantry inventory items</li><li>Wrote custom matching logic to recommend recipes from ingredients on hand and plan meals with AI</li></ul></div>
+<h2>Work Experience</h2>
+<div class="item"><p class="row"><b>Opp Construction</b><span>Jun 2026 – Sep 2026</span></p><p class="row"><i>Dump Truck Driver (Class A CDL)</i><span></span></p><ul><li>Hauled material for asphalt paving and concrete removal crews, working 60–80 hour weeks</li></ul></div>
+<div class="item"><p class="row"><b>CHS</b><span>Apr 2026 – Jun 2026</span></p><p class="row"><i>Semi Truck Driver (Class A CDL)</i><span></span></p><ul><li>Hauled dry fertilizer to supply spring spreading operations during the busiest season for area farmers</li></ul></div>
+<div class="item"><p class="row"><b>American Woods</b><span>Jan 2026 – Apr 2026</span></p><p class="row"><i>CNC Machine Operator (Part-Time)</i><span></span></p><ul><li>Operated CNC mills and Biesse Rover machines to produce precision furniture parts while enrolled full-time</li></ul></div>
+<h2>Leadership</h2>
+<div class="item"><p class="row"><b>North Dakota Boys State</b><span>2024</span></p><p class="row"><i>Governor; Senator</i><span></span></p><ul><li>Elected Governor by ~100 delegates and signed 10+ bills into law; previously served as Senator</li></ul></div>
+
+</main>
+</body>
+</html>
