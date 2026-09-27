@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rhett Lindell</title>
+  <meta name="description" content="Rhett Lindell, Computer Science and Cyber Security student at the University of North Dakota. I build and ship full-stack mobile apps." />
+  <meta property="og:title" content="Rhett Lindell" />
+  <meta property="og:description" content="Computer Science and Cyber Security student. I build and ship full-stack mobile apps." />
+  <meta property="og:image" content="https://lindellrhett-gif.github.io/images/rust-strength/suggestion.png" />
+  <link rel="icon" href="images/rust-strength/icon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./">Rhett Lindell</a>
+      <nav class="nav" aria-label="Main">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/lindellrhett-gif">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero">
+        <p class="eyebrow">Computer Science &amp; Cyber Security · University of North Dakota</p>
+        <h1>I build mobile apps and ship them.</h1>
+        <p class="lede">
+          I'm Rhett, a student developer looking for a software engineering internship.
+          I've built two full-stack apps on my own, from the database and security rules
+          to the algorithms and the release. One is now in App Store review.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">See my projects</a>
+          <a class="btn" href="https://github.com/lindellrhett-gif">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+          <a class="btn" href="mailto:lindellrhett@gmail.com">Email me</a>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2>Projects</h2>
+        <p class="section-intro">Both are built solo with TypeScript, React Native and Supabase.</p>
+
+        <div class="projects">
+          <a class="project" href="rust-strength.html">
+            <div class="project-media">
+              <img src="images/rust-strength/today.png" alt="" loading="lazy" />
+              <img src="images/rust-strength/suggestion.png" alt="" loading="lazy" />
+              <img src="images/rust-strength/friends.png" alt="" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <span class="status review">Submitted to the App Store</span>
+              <h3>Rust Strength</h3>
+              <p>
+                A workout tracker that suggests the weight for your next set from your recent
+                training, learns the conversion between your gym's machines, and works offline.
+                Includes a friends feed and leaderboards secured with Row Level Security.
+              </p>
+              <ul class="tags">
+                <li>React Native</li><li>TypeScript</li><li>PostgreSQL</li><li>Supabase</li><li>Jest</li>
+              </ul>
+              <span class="more">Read more →</span>
+            </div>
+          </a>
+
+          <a class="project" href="shelfsmith.html">
+            <div class="project-media text-only">
+              <div class="tile" aria-hidden="true">
+                <div class="tile-title">What can I cook?</div>
+                <div class="row ok"><span>Shakshuka</span><span>Ready to cook</span></div>
+                <div class="row"><span>Breakfast Burrito</span><span>Missing: 1</span></div>
+                <div class="row"><span>French Toast</span><span>Missing: 2</span></div>
+              </div>
+            </div>
+            <div class="project-body">
+              <span class="status dev">In development</span>
+              <h3>Shelfsmith</h3>
+              <p>
+                A shared-pantry app that shows what you can cook with what you already have.
+                Scan a receipt and an AI model reads the items. Households stay in sync live,
+                and recipes are matched against the pantry in a single SQL query.
+              </p>
+              <ul class="tags">
+                <li>React Native</li><li>Supabase Realtime</li><li>Edge Functions</li><li>Claude API</li><li>RevenueCat</li>
+              </ul>
+              <span class="more">Read more →</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2>Skills</h2>
+        <p class="section-intro">What I've used to build and ship real apps.</p>
+        <div class="skills">
+          <div class="skill">
+            <h3>Languages</h3>
+            <ul class="tags"><li>TypeScript</li><li>JavaScript</li><li>SQL (PostgreSQL, PL/pgSQL)</li><li>HTML</li><li>CSS</li></ul>
+          </div>
+          <div class="skill">
+            <h3>Mobile and front end</h3>
+            <ul class="tags"><li>React Native</li><li>React</li><li>Expo</li><li>Expo Router</li><li>TanStack Query</li><li>React Hook Form</li><li>Zod</li></ul>
+          </div>
+          <div class="skill">
+            <h3>Backend and security</h3>
+            <ul class="tags"><li>Supabase</li><li>PostgreSQL</li><li>Row Level Security</li><li>Auth</li><li>Edge Functions (Deno)</li><li>Realtime</li><li>Webhooks</li></ul>
+          </div>
+          <div class="skill">
+            <h3>Testing and shipping</h3>
+            <ul class="tags"><li>Jest</li><li>PGlite database tests</li><li>ESLint</li><li>Git and GitHub</li><li>EAS Build</li><li>TestFlight</li><li>App Store Connect</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <p class="section-intro">
+          I'm looking for software engineering and security internships.
+          The best way to reach me is email.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="mailto:lindellrhett@gmail.com">lindellrhett@gmail.com</a>
+          <a class="btn" href="https://github.com/lindellrhett-gif">github.com/lindellrhett-gif</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Rhett Lindell</span>
+      <span><a href="rust-strength.html">Rust Strength</a> · <a href="shelfsmith.html">Shelfsmith</a></span>
+    </div>
+  </footer>
+</body>
+</html>

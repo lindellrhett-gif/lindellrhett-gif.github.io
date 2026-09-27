@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shelfsmith · Rhett Lindell</title>
+  <meta name="description" content="Shelfsmith, a shared-pantry app that shows what you can cook with what you already have. Built solo with React Native, Supabase and the Claude API." />
+  <meta property="og:title" content="Shelfsmith · Rhett Lindell" />
+  <meta property="og:description" content="A shared-pantry app that shows what you can cook with what you already have." />
+  <link rel="icon" href="images/rust-strength/icon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./">Rhett Lindell</a>
+      <nav class="nav" aria-label="Main">
+        <a href="./#projects">Projects</a>
+        <a href="./#skills">Skills</a>
+        <a href="./#contact">Contact</a>
+        <a href="https://github.com/lindellrhett-gif">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <a class="back" href="./#projects">← All projects</a>
+
+      <section class="project-hero">
+        <h1>Shelfsmith</h1>
+        <p class="lede">
+          Cook what you already have. Shelfsmith tracks a household's pantry, shows the recipes
+          you can make right now, and builds a shopping list for the rest. Scan a grocery receipt,
+          and an AI model adds what you bought.
+        </p>
+        <ul class="facts">
+          <li><strong>Role:</strong> solo developer</li>
+          <li><strong>Status:</strong> in development, preparing for the App Store</li>
+          <li><strong>Built:</strong> September 2026</li>
+          <li><strong>Platforms:</strong> iOS, Android and web from one codebase</li>
+        </ul>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/lindellrhett-gif/cooking-app">Source code</a>
+          <a class="btn" href="https://lindellrhett-gif.github.io/shelfsmith/site/">Support and privacy</a>
+        </div>
+      </section>
+
+      <section>
+        <h2>What it does</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Cooking</h3>
+            <ul>
+              <li><strong>Ready to cook</strong> shows recipes you can make now, and <strong>Almost there</strong> shows ones you are one or two ingredients short of.</li>
+              <li>80 built-in recipes with calories and macros, matched against about 240 ingredients.</li>
+              <li>Diets, allergies, dislikes, and a time limit, set per person.</li>
+              <li>A weekly meal planner, shared with the household.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Household</h3>
+            <ul>
+              <li>Join a household with a six-character invite code.</li>
+              <li>The pantry and shopping list update live on every phone.</li>
+              <li>Receipt scanning adds groceries without typing.</li>
+              <li>Expiry tracking with a "use these up" reminder at 6 pm local time.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>How it works</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Recipe matching in one SQL query</h3>
+            <p>
+              A Postgres function joins every recipe against the household's pantry and returns
+              what is missing for each. Staples like salt and oil count as present. Optional
+              ingredients never block a match, and allergens hide a recipe completely.
+            </p>
+            <p>
+              Results are ranked by favourites, dislikes, and what was cooked recently. Matching
+              deliberately checks whether you have an ingredient, not how much of it, because
+              converting between units needs a density table for every ingredient.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Receipt scanning with AI</h3>
+            <ol class="steps">
+              <li><strong>Upload.</strong> The photo is downscaled on the phone and uploaded to a private storage bucket.</li>
+              <li><strong>Read.</strong> A server-side Edge Function checks who is asking, then sends the image to Claude with the ingredient dictionary. It gets back structured JSON with a confidence rating per line.</li>
+              <li><strong>Review.</strong> The user confirms every line before anything reaches the pantry. The photo is deleted once it has been read.</li>
+            </ol>
+          </div>
+          <div class="card">
+            <h3>Security</h3>
+            <p>
+              Every household table routes its Row Level Security policy through one membership
+              check. Joining a household goes through a permission-checked function, so nobody can
+              list households they do not belong to. The AI key exists only on the server.
+            </p>
+            <p>
+              Subscription status is written only by a webhook verified with a shared secret, so
+              the app cannot grant itself premium features.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Measured cost</h3>
+            <p>
+              I measured the real request size and cut the cost of each scan by about 60%, to
+              roughly 3 cents. I moved to a smaller model, which the human review step makes safe,
+              and removed a prompt cache that never got reused, because receipts are scanned days
+              apart.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="prose">
+        <h2>Testing the database</h2>
+        <p>
+          The test suite loads every real migration into PGlite, which is Postgres compiled to
+          WebAssembly, so it needs no Docker. It then acts as different signed-in users to prove
+          the access rules hold. For example, a non-member cannot see what a household has
+          expiring, and a housemate cannot read the payer's subscription record.
+        </p>
+      </section>
+
+      <section>
+        <h2>Tech stack</h2>
+        <table class="stack">
+          <tr><th>App</th><td>TypeScript, React Native 0.86, React 19, Expo SDK 57, Expo Router, React Native Web</td></tr>
+          <tr><th>Data</th><td>TanStack Query v5, supabase-js, Supabase Realtime</td></tr>
+          <tr><th>Backend</th><td>Supabase: PostgreSQL, Auth, Row Level Security, Storage, Edge Functions (Deno)</td></tr>
+          <tr><th>AI</th><td>Anthropic Claude API with structured outputs, called only from the server</td></tr>
+          <tr><th>Payments</th><td>App Store subscriptions through RevenueCat webhooks</td></tr>
+          <tr><th>Notifications</th><td>Expo push notifications from a scheduled Edge Function</td></tr>
+          <tr><th>Testing</th><td>Node test runner with PGlite for the database</td></tr>
+        </table>
+      </section>
+
+      <section class="prose">
+        <h2>My role</h2>
+        <p>I built Shelfsmith on my own:</p>
+        <ul>
+          <li><strong>Product:</strong> chose the features and designed the screens.</li>
+          <li><strong>Backend:</strong> designed the schema, the matching engine, the security policies, and the server functions.</li>
+          <li><strong>AI integration:</strong> built receipt scanning, including the review flow and the cost work.</li>
+          <li><strong>Launch preparation:</strong> set up subscriptions, the consent design for health and AI data, and the release build.</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Rhett Lindell</span>
+      <span><a href="./">Home</a> · <a href="rust-strength.html">Rust Strength</a></span>
+    </div>
+  </footer>
+</body>
+</html>

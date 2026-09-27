@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rust Strength · Rhett Lindell</title>
+  <meta name="description" content="Rust Strength, an iPhone workout tracker that suggests the weight for your next set. Built solo with React Native, TypeScript and Supabase." />
+  <meta property="og:title" content="Rust Strength · Rhett Lindell" />
+  <meta property="og:description" content="A workout tracker that suggests the weight for your next set and learns your gym's machines." />
+  <meta property="og:image" content="https://lindellrhett-gif.github.io/images/rust-strength/suggestion.png" />
+  <link rel="icon" href="images/rust-strength/icon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./">Rhett Lindell</a>
+      <nav class="nav" aria-label="Main">
+        <a href="./#projects">Projects</a>
+        <a href="./#skills">Skills</a>
+        <a href="./#contact">Contact</a>
+        <a href="https://github.com/lindellrhett-gif">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <a class="back" href="./#projects">← All projects</a>
+
+      <section class="project-hero">
+        <div class="title-row">
+          <img src="images/rust-strength/icon.png" alt="Rust Strength app icon" />
+          <h1>Rust Strength</h1>
+        </div>
+        <p class="lede">
+          A workout tracker for iPhone that tells you what weight to put on the bar for your
+          next set. It learns from your recent training, tells your gym's machines apart, and
+          keeps working with no signal.
+        </p>
+        <ul class="facts">
+          <li><strong>Role:</strong> solo developer</li>
+          <li><strong>Status:</strong> submitted to the App Store after TestFlight beta testing</li>
+          <li><strong>Built:</strong> September 2026</li>
+          <li><strong>Tests:</strong> 519 unit tests</li>
+        </ul>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/lindellrhett-gif/rust-strength-app">Source code</a>
+          <a class="btn" href="https://lindellrhett-gif.github.io/rust-strength/">Support and privacy</a>
+        </div>
+      </section>
+
+      <div class="gallery" role="list">
+        <figure role="listitem">
+          <img src="images/rust-strength/suggestion.png" alt="Add set screen suggesting 230 lb for 4 to 6 reps, with the estimated one-rep max, last session's top set and a rest timer" loading="lazy" />
+          <figcaption>The next-set suggestion, with last session's top set and the rest timer.</figcaption>
+        </figure>
+        <figure role="listitem">
+          <img src="images/rust-strength/today.png" alt="Today screen with a 5-day streak, pounds lifted, sets and total training time" loading="lazy" />
+          <figcaption>Today: streak, volume, and a quick start.</figcaption>
+        </figure>
+        <figure role="listitem">
+          <img src="images/rust-strength/workout.png" alt="Active workout started from a preset, with planned sets and rep ranges" loading="lazy" />
+          <figcaption>A workout started from a preset, with a rep range per exercise.</figcaption>
+        </figure>
+        <figure role="listitem">
+          <img src="images/rust-strength/friends.png" alt="Friends feed of finished sessions with personal records, volume, sets and reps" loading="lazy" />
+          <figcaption>The friends feed. Friends see session summaries, never set-by-set logs.</figcaption>
+        </figure>
+        <figure role="listitem">
+          <img src="images/rust-strength/generate.png" alt="Workout generator choosing a push day from barbell, dumbbell and machine exercises" loading="lazy" />
+          <figcaption>The generator builds a session from your equipment and this week's training.</figcaption>
+        </figure>
+      </div>
+
+      <section>
+        <h2>What it does</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Training</h3>
+            <ul>
+              <li>Suggests the weight for your next set, aimed at your rep range.</li>
+              <li>Learns the conversion between differently labeled machines.</li>
+              <li>Handles weighted, bodyweight, assisted, and timed-hold exercises, with a built-in hold timer.</li>
+              <li>Rest timer with a lock-screen notification.</li>
+              <li>Presets, a workout generator, and a review screen for fixing mistakes.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Progress and friends</h3>
+            <ul>
+              <li>Streaks, 30-day consistency, volume, time trained, and personal records.</li>
+              <li>Progress charts, a weekly body chart, levels, and badges.</li>
+              <li>A friends feed with reactions, and a leaderboard across five metrics.</li>
+              <li>Offline logging that syncs later, a data export, and account deletion.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>How it works</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>The recommendation algorithm</h3>
+            <ol class="steps">
+              <li><strong>Estimate strength per set.</strong> How hard the set felt (RPE) becomes reps left in reserve. The Epley formula then turns weight and reps into an estimated one-rep max.</li>
+              <li><strong>Smooth it.</strong> An exponential moving average over the last six working sets keeps one odd day from swinging the result.</li>
+              <li><strong>Pick the load.</strong> It runs the formula backwards for your target reps, caps the change at 15% from last time, and rounds to what the machine can actually load.</li>
+            </ol>
+          </div>
+          <div class="card">
+            <h3>Learning your gym's machines</h3>
+            <p>
+              Two cable stacks can be labeled completely differently: 50 lb on one might be 100 lb on
+              another. The app pairs sessions of the same exercise on two machines done within
+              14 days of each other. It takes the median ratio across the most recent pairs, then
+              converts history before suggesting a weight.
+            </p>
+            <p>
+              Each session is matched only to its closest counterpart. Otherwise, getting stronger
+              over a month would be mistaken for a difference between the machines.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Security in the database</h3>
+            <p>
+              Every table has PostgreSQL Row Level Security, so the database refuses anyone else's
+              data whatever the app sends. Social features go through SQL functions that check
+              friendship, the sharing setting, and blocks before returning anything, and they return
+              summaries only.
+            </p>
+            <p>
+              A pre-launch review found that reaction rows exposed who reacted, even though the app
+              only showed counts. I tightened the policy so the database enforces what the privacy
+              policy promises.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Offline-first sync</h3>
+            <p>
+              The TanStack Query cache is saved on the device, and writes are queued in order and
+              replayed when the connection returns. Sets logged in a basement with no signal are
+              never lost, and the app opens straight to your data.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="prose">
+        <h2>Problems I solved</h2>
+        <ul>
+          <li>
+            <strong>"Workout not found" after an hour away.</strong> The auth token had expired while
+            the app was in the background, so data requests went out with the public key alone, and
+            Row Level Security correctly returned nothing. I added a fetch guard that holds those
+            requests until the session refreshes, and retries them with backoff.
+          </li>
+          <li>
+            <strong>A friend's workout time showing 23 hours instead of 2.</strong> A SQL query joined
+            sets before adding up session lengths, so each workout was counted once per set. I split
+            the aggregates into separate lateral joins.
+          </li>
+          <li>
+            <strong>Users unable to verify their email.</strong> Some email security filters open links to
+            scan them, which can use up a single-use confirmation link before the user taps it. I switched sign-up and
+            password reset to 6-digit codes.
+          </li>
+          <li>
+            <strong>Mistaking progress for a machine difference.</strong> My first machine-ratio model
+            paired a new personal record with an older session on the other machine. I fixed it with
+            mutual-nearest pairing inside a time window, and added tests for it.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tech stack</h2>
+        <table class="stack">
+          <tr><th>App</th><td>TypeScript, React Native 0.86, React 19, Expo SDK 57, Expo Router</td></tr>
+          <tr><th>Data and sync</th><td>TanStack Query v5 with a persisted cache and queued offline writes, supabase-js</td></tr>
+          <tr><th>Backend</th><td>Supabase: PostgreSQL, Auth, Row Level Security, SQL functions (14 migrations)</td></tr>
+          <tr><th>Validation and UI</th><td>React Hook Form, Zod, react-native-svg</td></tr>
+          <tr><th>Quality</th><td>Jest and ts-jest (519 tests), ESLint, strict TypeScript</td></tr>
+          <tr><th>Release</th><td>EAS Build and Submit, TestFlight, App Store Connect, GitHub Pages</td></tr>
+        </table>
+      </section>
+
+      <section class="prose">
+        <h2>My role</h2>
+        <p>I built Rust Strength on my own:</p>
+        <ul>
+          <li><strong>Product:</strong> chose the features, designed the screens, and worked through beta feedback.</li>
+          <li><strong>Backend:</strong> designed the Postgres schema, security policies, and SQL functions.</li>
+          <li><strong>Algorithms:</strong> built the recommendation and machine-conversion logic, with tests.</li>
+          <li><strong>Launch:</strong> ran the TestFlight beta and the App Store submission.</li>
+          <li><strong>Legal and privacy:</strong> wrote the privacy policy and terms, and built the data export and account deletion.</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Rhett Lindell</span>
+      <span><a href="./">Home</a> · <a href="shelfsmith.html">Shelfsmith</a></span>
+    </div>
+  </footer>
+</body>
+</html>
